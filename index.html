@@ -1,0 +1,113 @@
+<!DOCTYPE html><!--
+    Windows 96
+
+    Copyright (C) The Windows 96 Team 2021. All rights reserved.
+--><html><head>
+        <meta charset="UTF-8">
+        <title>Windows 96</title>
+        <meta http-equiv="Cache-control" content="public">
+        
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+        <meta property="og:url" content="https://windows96.net">
+        <meta property="og:title" content="MIKESOFT WINDOWS 96">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="WINDOWS 96">
+        <meta property="og:image" content="appletouch-icon.png">
+        <meta property="og:description" content="MIKESOFT presents you the latest version of Windows, WINDOWS 96.">
+        <meta name="description" content="MIKESOFT presents you WINDOWS 96, the latest release of your favorite operating system!">
+        <meta name="keywords" content="windows96,windows,webos,social,pwa,operatingsystem,mikesoft,computer,javascript,html,css">
+        <link rel="apple-touch-icon" href="appletouch-icon.png" id="appletouch_icon">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="icon" sizes="192x192" href="appletouch-icon.png" id="app_icon">
+        <!--<link rel="manifest" href="manifest.json" />-->
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="normalize.css">
+        <link rel="stylesheet" href="animate.css">
+        <link rel="stylesheet" href="jquery-ui.min.css">
+        <link rel="stylesheet" href="codemirror.css">
+        <link rel="stylesheet" href="ui.css">
+        <link rel="stylesheet" href="webkit.css">
+
+        <!-- Third party required libs -->
+        <script src="jszip.min.js"></script>
+        <script src="ldb-async.js"></script>
+        <script src="id3-minimized.js"></script>
+        <script src="jquery-3.5.1.min.js"></script>
+        <script src="jquery-ui.min.js"></script>
+        <script src="jquerydestroyer.js" bootclean="true"></script>
+        <script src="showdown.min.js"></script>
+        <script src="socket.io.min.js" crossorigin="anonymous"></script>
+
+        <!-- Kernel JS -->
+        <script src="kernel.js"></script>
+
+        <!-- Custom Kernel JS loader -->
+        <script src="kl.js"></script>
+    </head>
+    <body oncontextmenu="return false;">
+        <script bootclean="true">
+            window.onerror = function(e) {
+                w96.boot_proc.interrupt(e);
+                window.onerror = function() {};
+            }
+        </script>
+        <style>.desktop { background-position: center !important; } </style>
+        <noscript>
+            <link rel="stylesheet" href="http://www.windows96.net/system/resource/stylesheets/bsod.css">
+            <div class="error">
+                <div class="container">
+                    <div class="title"> WINDOWS 96 </div>
+                    <div class="desc"><br>
+                        Your browser does not have JavaScript support. The bootup process will be terminated.<br>
+                        <br>
+                        * Press any key to terminate the bootup process.<br>
+                        * Press CTRL+ALT+DEL again to restart your computer. You will lose all unsaved information in all applications.<br>
+                        <br>
+                    </div>
+                    <div class="instruction">Press any key to continue _</div>
+                </div>
+            </div>
+        </noscript>
+        <div id="convga" class="vga_console_container" style="color: rgb(255, 34, 34);">[fatal] Windows96 kernel failed to load.</div>
+        <div id="maingfx" class="os_container">
+            
+        </div>
+        <audio id="mainaudio" autoplay=""></audio>
+        <script>
+            if(typeof w96 == 'undefined') {
+                // Kernel failed to load
+                const convga = document.getElementById('convga');
+                convga.innerHTML = '[fatal] Windows96 kernel failed to load.';  
+                convga.style.color = '#f22';
+            }
+
+            w96.main();
+
+            /* Analytics and fun stuff */
+            fetch('ct.js', {cache: 'reload'}); // This is a view counter. It collects zero data except increasing a number.
+
+            /* We like data, but if you don't want these analytics, please, 
+               go to the System Flags application and disable these there.
+               These analytics do not knowingly collect personal data, only anonymized data, nor do they use cookies.
+               Additionally, we respect DNT (Do Not Track) headers from your browser if those are enabled.
+               Check the Privacy Policy on the desktop in the Docs folder for more information. */
+            if (!w96.sys.flags.has('disable_analytics') && location.host == 'windows96.net'){ // Do not trigger on staging.windows96.net
+                var _paq = window._paq = window._paq || [];
+                _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+                _paq.push(["setDomains", ["*.windows96.net"]]);
+                _paq.push(['disableCookies']);
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function() {
+                   var u="//zestor.sys36.net/analytics/";
+                   _paq.push(['setTrackerUrl', u+'stats.php']);
+                   _paq.push(['setSiteId', '1']);
+                   var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                   g.type='text/javascript'; g.async=true; g.src=u+'stats.js'; s.parentNode.insertBefore(g,s);
+               })();
+            }
+        </script>
+    
+
+</body></html>
